@@ -1,0 +1,249 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Lakes to Queries: Building High-Performance Data Platforms",
+      "image": "https://images.unsplash.com/photo-1540575861501-7ad0582373f3?auto=format&fit=crop&q=80&w=800",
+      "date": "Sat, Jul 4",
+      "time": "10:00 AM IST",
+      "fullDate": "Saturday, Jul 4 • 10:00 AM to 1:00 PM IST",
+      "host": "ClickHouse Mumbai User Group",
+      "hostRating": "4.6",
+      "hostReviews": "60 reviews",
+      "isFree": true,
+      "isOnline": false,
+      "location": "Mumbai, IN",
+      "fullLocation": "iDFy Mumbai, Unit no. 801, Skyline Icon, 804, Andheri - Kurla Rd, Chimalpada, Marol, Andheri East, Mumbai, Maharashtra 400059 - Mumbai",
+      "description": "Join us for a community meetup exploring how modern teams are rethinking data architecture from the ground up. From designing scalable data lakes to building fast, reliable query layers on top of them, speakers will share real production experiences and practical lessons learned along the way.",
+      "longDescription": "Join us for a community meetup exploring how modern teams are rethinking data architecture from the ground up. Join us for a community meetup exploring how modern teams are rethinking data architecture from the ground up. From designing scalable data lakes to building fast, reliable query layers on top of them, speakers will share real production experiences and practical lessons learned along the way. Whether you are architecting a new data platform or evolving an existing one, this is your chance to learn from engineers who have done it, connect with the local data community, and walk away with ideas you can put to work immediately.\n\nDon't miss out! RSVP and secure your spot!",
+      "agenda": [
+        { "time": "10:00 AM", "task": "Registration & networking" },
+        { "time": "11:00 AM", "task": "Welcome & opening" },
+        { "time": "11:10 AM", "task": "Talk 1 - Scaling to a Billion: Building a Maritime Data Lake with ClickHouse Cloud by Vishal Dubey, CTO, RUDRA Cybersecurity Pvt. Ltd." },
+        { "time": "11:40 AM", "task": "Talk 2 - Trillions of Rows, Flat Bill: How iDFy Runs Multi-Tenant Insights-as-a-Service on a 2-Node ClickHouse Cluster by Hrishikesh Bihani, Sr. Technical Architect @ iDFy" },
+        { "time": "12:10 PM", "task": "Break" },
+        { "time": "12:20 PM", "task": "Talk 3 - TBD" },
+        { "time": "12:50 PM", "task": "Closing Remarks" },
+        { "time": "01:00 PM", "task": "Lunch & networking" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "React Server Components: Deep Dive Workshop",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800",
+      "date": "Sun, Jul 5",
+      "time": "2:00 PM IST",
+      "host": "Mumbai React Developers",
+      "isFree": true,
+      "isOnline": false
+    },
+    {
+      "id": 3,
+      "title": "Design Systems at Scale: From Figma to Code",
+      "image": "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800",
+      "date": "Tue, Jul 7",
+      "time": "6:30 PM IST",
+      "host": "UI/UX Mumbai Community",
+      "isFree": false,
+      "isOnline": false
+    },
+    {
+      "id": 4,
+      "title": "Cloud Native Architecture with Kubernetes",
+      "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&q=80&w=800",
+      "date": "Fri, Jul 10",
+      "time": "11:00 AM IST",
+      "host": "Mumbai Cloud Computing",
+      "isFree": true,
+      "isOnline": false
+    },
+    {
+      "id": 5,
+      "title": "Full-stack Web Dev: From Zero to Hero",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
+      "date": "Sat, Jul 11",
+      "time": "10:00 AM IST",
+      "host": "Open Source Mumbai",
+      "isFree": true,
+      "isOnline": false
+    },
+    {
+      "id": 6,
+      "title": "Blockchain & Web3: The Future of Internet",
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800",
+      "date": "Sun, Jul 12",
+      "time": "4:00 PM IST",
+      "host": "Crypto Mumbai Tribe",
+      "isFree": true,
+      "isOnline": false
+    },
+    {
+      "id": 7,
+      "title": "AI & Machine Learning: Building LLM Applications",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
+      "date": "Wed, Jul 15",
+      "time": "7:00 PM IST",
+      "host": "Mumbai AI Enthusiasts",
+      "isFree": true,
+      "isOnline": false
+    },
+    {
+      "id": 8,
+      "title": "Cybersecurity Essentials for Modern Developers",
+      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+      "date": "Sat, Jul 18",
+      "time": "10:00 AM IST",
+      "host": "Mumbai Security Guild",
+      "isFree": false,
+      "isOnline": false
+    }
+  ],
+  "onlineEvents": [
+    {
+      "id": 9,
+      "title": "Creative Writing Workshop",
+      "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=800",
+      "date": "Sat, Jul 25",
+      "time": "11:00 AM IST",
+      "host": "Creative Writing Meet-UP",
+      "isFree": true,
+      "isOnline": true
+    },
+    {
+      "id": 10,
+      "title": "A Council of Highly Supportive People",
+      "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800",
+      "date": "Tue, Jun 30",
+      "time": "7:00 PM IST",
+      "host": "Obliqua (talking circle)",
+      "isFree": true,
+      "isOnline": true
+    },
+    {
+      "id": 11,
+      "title": "Find Your Purpose",
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800",
+      "date": "Wed, Jul 8",
+      "time": "8:00 PM IST",
+      "host": "Living on Purpose Meetup Group",
+      "isFree": true,
+      "isOnline": true
+    },
+    {
+      "id": 12,
+      "title": "Architecture Guardrails and Observability in Agentic Workflow",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+      "date": "Tue, Jun 30",
+      "time": "5:00 PM IST",
+      "host": "Software Craftspeople Community",
+      "isFree": true,
+      "isOnline": true
+    }
+  ],
+  "destinations": [
+    {
+      "id": 1,
+      "city": "New York",
+      "image": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 2,
+      "city": "Los Angeles",
+      "image": "https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 3,
+      "city": "Chicago",
+      "image": "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 4,
+      "city": "Washington",
+      "image": "https://images.unsplash.com/photo-1501466044931-62695aada8e9?auto=format&fit=crop&q=80&w=800"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "title": "Corporate Event",
+      "description": "Creating unforgettable events",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 2,
+      "title": "Exhibition",
+      "description": "Stall Design and Fabrication",
+      "image": "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 3,
+      "title": "Corporate Gifting",
+      "description": "Specializes in premium corporate gifting solutions",
+      "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 4,
+      "title": "EventKepers Flagship",
+      "description": "Venues under complete management.",
+      "image": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 5,
+      "title": "Venue",
+      "description": "Banquet halls, Lawns/Farmhous.. Gatherings to grand celebrations",
+      "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 6,
+      "title": "Photographers",
+      "description": "Photographers, Cinema/Video, Pre-wedding..",
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800"
+    }
+  ],
+  "gallery": [
+    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1472653431158-6364773b2a56?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1514525253361-b83f859b73c0?auto=format&fit=crop&q=80&w=800"
+  ],
+  "clients": [
+    { "name": "ideaForge", "logo": "https://www.vectorlogo.zone/logos/google/google-ar21.svg" },
+    { "name": "Lubrizol", "logo": "https://www.vectorlogo.zone/logos/microsoft/microsoft-ar21.svg" },
+    { "name": "RIO Energy", "logo": "https://www.vectorlogo.zone/logos/amazon/amazon-ar21.svg" },
+    { "name": "PQSmitra", "logo": "https://www.vectorlogo.zone/logos/apple/apple-ar21.svg" },
+    { "name": "Salasar", "logo": "https://www.vectorlogo.zone/logos/netflix/netflix-ar21.svg" },
+    { "name": "AllydPharma", "logo": "https://www.vectorlogo.zone/logos/spotify/spotify-ar21.svg" },
+    { "name": "Dolphin", "logo": "https://www.vectorlogo.zone/logos/airbnb/airbnb-ar21.svg" },
+    { "name": "GIM", "logo": "https://www.vectorlogo.zone/logos/tesla/tesla-ar21.svg" }
+  ],
+  "faqs": [
+    {
+      "question": "What advantages do I gain from making a booking through your portal?",
+      "answer": "We can assist you in securing the most favorable negotiated rates for venues. Our portal serves as a comprehensive solution for all your event-related bookings. Our dedicated team is ready to help you not only in booking the ideal venue but also in coordinating additional services such as catering, artists, and event themes."
+    },
+    {
+      "question": "How quickly can you confirm my booking?",
+      "answer": "Confirmation times vary by venue, but our automated system typically provides an initial status within 24 hours. Our concierge team follows up immediately to finalize all details and ensure your date is secured."
+    },
+    {
+      "question": "What types of events do you provide services for?",
+      "answer": "We handle a wide range of events including Corporate Meetups, Exhibitions, Weddings, Product Launches, and Private Parties. Our diverse service network is equipped to manage events of any scale."
+    },
+    {
+      "question": "What's the best way for me to obtain the most favorable rates?",
+      "answer": "Booking in advance and utilizing our bundled service packages (Venue + Catering + Decor) is the most effective way to secure premium discounts and negotiated rates through our portal."
+    },
+    {
+      "question": "Are there any extra fees associated with the booking?",
+      "answer": "Transparency is our priority. All standard service fees are included in the quote. Any optional add-ons or venue-specific security deposits will be clearly outlined before you finalize your payment."
+    },
+    {
+      "question": "Is it possible for me to modify or cancel my booking?",
+      "answer": "Yes, modifications can be made through your dashboard. Cancellations are subject to the specific venue's policy, which is displayed at the time of booking. Our support team is always available to assist with special requests."
+    }
+  ]
+}
