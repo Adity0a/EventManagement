@@ -55,7 +55,7 @@ const Dashboard = () => {
   const stats = [
     { label: 'Total Events', value: data?.totalEvents || 0, icon: <Calendar className="text-blue-500" />, change: '+12%' },
     { label: 'Total Registrations', value: data?.totalRegistrations || 0, icon: <Users className="text-green-500" />, change: '+5%' },
-    { label: 'Page Views', value: '45k', icon: <Eye className="text-[#7c3aed]" />, change: '+18%' },
+    { label: 'Page Views', value: '50', icon: <Eye className="text-[#7c3aed]" />, change: '+18%' },
     { label: 'Conversion', value: '3.2%', icon: <TrendingUp className="text-[#7c3aed]" />, change: '+2%' },
   ];
 
