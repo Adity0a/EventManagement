@@ -1,56 +1,48 @@
-import { assets } from '../../assets/assets'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import { LayoutDashboard, PlusCircle, List, MessageSquare } from 'lucide-react';
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col border-r border-gray-200 min-h-full pt-6">
+    <div className="flex flex-col border-r border-gray-200 min-h-full pt-6 bg-white">
 
       <NavLink
         end={true}
         to="/admin"
         className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
+          `flex items-center gap-3 py-4 px-6 md:min-w-64 cursor-pointer transition-all ${
+            isActive ? "bg-pink-50 text-[#f64060] border-r-4 border-[#f64060]" : "text-gray-500 hover:bg-gray-50"
+          }`
         }
       >
-        <img src={assets.home_icon} alt="home" className="min-w-4 w-5" />
-        <p className="hidden md:inline-block">Dashboard</p>
+        <LayoutDashboard size={20} />
+        <p className="hidden md:inline-block font-bold text-sm uppercase tracking-wider">Dashboard</p>
       </NavLink>
 
       <NavLink
-        end={true}
-        to="/admin/addBlog"
+        to="/admin/add-event"
         className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
+          `flex items-center gap-3 py-4 px-6 md:min-w-64 cursor-pointer transition-all ${
+            isActive ? "bg-pink-50 text-[#f64060] border-r-4 border-[#f64060]" : "text-gray-500 hover:bg-gray-50"
+          }`
         }
       >
-        <img src={assets.add_icon} alt="home" className="min-w-4 w-5" />
-        <p className="hidden md:inline-block">Add blogs</p>
+        <PlusCircle size={20} />
+        <p className="hidden md:inline-block font-bold text-sm uppercase tracking-wider">Add Event</p>
       </NavLink>
 
       <NavLink
-        end={true}
-        to="/admin/listBlog"
+        to="/admin/list-events"
         className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
+          `flex items-center gap-3 py-4 px-6 md:min-w-64 cursor-pointer transition-all ${
+            isActive ? "bg-pink-50 text-[#f64060] border-r-4 border-[#f64060]" : "text-gray-500 hover:bg-gray-50"
+          }`
         }
       >
-        <img src={assets.list_icon} alt="home" className="min-w-4 w-5" />
-        <p className="hidden md:inline-block">Blog lists</p>
+        <List size={20} />
+        <p className="hidden md:inline-block font-bold text-sm uppercase tracking-wider">Manage Events</p>
       </NavLink>
-
-      <NavLink
-        end={true}
-        to="/admin/comments"
-        className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
-        }
-      >
-        <img src={assets.comment_icon} alt="home" className="min-w-4 w-5" />
-        <p className="hidden md:inline-block">Comments</p>
-      </NavLink>
-
     </div>
   );
 }
 
-export default Sidebar
+export default Sidebar;

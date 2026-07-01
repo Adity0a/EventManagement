@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   Calendar,
   MapPin,
@@ -9,25 +9,39 @@ import {
   Heart,
   Users,
   Clock,
-  Map,
-  ArrowLeft
+  ArrowLeft,
+  Download,
+  ShieldCheck,
+  Info,
+  CheckCircle2,
+  Globe
 } from 'lucide-react';
 import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
+import RegistrationModal from '../../components/common/RegistrationModal';
+import MapContainer from '../../components/common/MapContainer';
+import { useAppContext } from '../../context/AppContext';
+import jsPDF from 'jspdf';
+import toast from 'react-hot-toast';
 
 const EventDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { axios, backendUrl } = useAppContext();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await fetch('/carddata.json');
-        const data = await response.json();
-        const allEvents = [...data.events, ...data.onlineEvents];
-        const foundEvent = allEvents.find(e => e.id === parseInt(id));
-        setEvent(foundEvent);
+        const { data } = await axios.post(`${backendUrl}/api/event/detail`, { id });
+        if (data.success) {
+          setEvent(data.event);
+        }
       } catch (error) {
         console.error('Error fetching event details:', error);
       } finally {
@@ -37,105 +51,209 @@ const EventDetail = () => {
 
     fetchEvent();
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [id, axios, backendUrl]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#f64060]"></div>
-      </div>
-    );
-  }
+  const exportToPDF = async () => {
+    try {
+      setIsExporting(true);
+      const doc = new jsPDF();
 
-  if (!event) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white gap-4">
-        <h1 className="text-2xl font-bold text-gray-800">Event not found</h1>
-        <Link to="/" className="text-[#f64060] font-semibold flex items-center gap-2">
-          <ArrowLeft size={20} /> Back to Home
-        </Link>
-      </div>
-    );
-  }
+      doc.setFontSize(22);
+      doc.setTextColor(246, 64, 96);
+      doc.text(event.title, 20, 30, { maxWidth: 170 });
+
+      doc.setFontSize(12);
+      doc.setTextColor(100);
+      doc.text(`Hosted by ${event.host}`, 20, 45);
+
+      doc.setFontSize(14);
+      doc.setTextColor(0);
+      doc.text("Event Details", 20, 60);
+
+      doc.setFontSize(10);
+      doc.text(`Date: ${event.fullDate || event.date}`, 20, 70);
+      doc.text(`Time: ${event.time}`, 20, 77);
+      doc.text(`Location: ${event.isOnline ? "Online Event" : (event.fullLocation || event.location)}`, 20, 84);
+
+      if (event.image) {
+        try {
+          const img = new Image();
+          img.crossOrigin = "Anonymous";
+          img.src = event.image;
+          await new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+
+          if (img.complete && img.naturalWidth > 0) {
+            const imgWidth = 170;
+            const imgHeight = (img.naturalHeight * imgWidth) / img.naturalWidth;
+            const finalHeight = Math.min(imgHeight, 80);
+            doc.addImage(img, 'JPEG', 20, 95, imgWidth, finalHeight);
+          }
+        } catch (e) { console.error(e); }
+      }
+
+      doc.addPage();
+      doc.setFontSize(18);
+      doc.setTextColor(246, 64, 96);
+      doc.text("Event Description", 20, 25);
+
+      doc.setFontSize(11);
+      doc.setTextColor(60);
+
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = event.description;
+      const plainText = tempDiv.innerText || tempDiv.textContent || "";
+      const splitDescription = doc.splitTextToSize(plainText, 170);
+      doc.text(splitDescription, 20, 40);
+
+      if (event.agenda && event.agenda.length > 0) {
+        doc.addPage();
+        doc.setFontSize(18);
+        doc.setTextColor(246, 64, 96);
+        doc.text("Event Agenda", 20, 25);
+
+        let yPos = 40;
+        event.agenda.forEach((item) => {
+          if (yPos > 270) { doc.addPage(); yPos = 25; }
+          doc.setFontSize(10);
+          doc.setTextColor(0);
+          doc.setFont(undefined, 'bold');
+          doc.text(`${item.time}`, 20, yPos);
+          doc.setFont(undefined, 'normal');
+          doc.setTextColor(80);
+          const taskLines = doc.splitTextToSize(item.task, 130);
+          doc.text(taskLines, 50, yPos);
+          yPos += (taskLines.length * 5) + 5;
+        });
+      }
+
+      doc.save(`${event.title.replace(/\s+/g, '_')}_details.pdf`);
+      toast.success("PDF Downloaded!");
+    } catch (error) {
+      toast.error("Failed to generate PDF");
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#f64060]"></div>
+    </div>
+  );
+
+  if (!event) return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white gap-4">
+      <h1 className="text-2xl font-bold text-gray-800">Event not found</h1>
+      <button onClick={() => navigate('/')} className="text-[#f64060] font-semibold flex items-center gap-2">
+        <ArrowLeft size={20} /> Back to Home
+      </button>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-pink-100 selection:text-[#f64060]">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-12 mt-16">
-        {/* Breadcrumbs / Back Navigation */}
-        <div className="mb-8">
-          <Link to="/" className="text-gray-500 hover:text-[#f64060] transition-colors flex items-center gap-2 text-sm font-medium">
-            <ArrowLeft size={16} /> Back to Events
+        {/* Navigation Bar */}
+        <div className="mb-10 flex items-center justify-between border-b border-gray-100 pb-6">
+          <Link to="/" className="group text-gray-500 hover:text-[#f64060] transition-all flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
+            <div className="p-2 rounded-full bg-gray-50 group-hover:bg-pink-50 transition-colors">
+              <ArrowLeft size={16} />
+            </div>
+            Back to Events
           </Link>
+
+          <button
+            onClick={exportToPDF}
+            disabled={isExporting}
+            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-600 hover:text-[#f64060] transition-all border border-gray-200 px-5 py-2.5 rounded-2xl hover:bg-white hover:shadow-lg disabled:opacity-50"
+          >
+            <Download size={14} />
+            {isExporting ? "Processing..." : "Export PDF"}
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16">
 
-          {/* Main Content Column */}
-          <div className="space-y-10">
-            {/* Header Section */}
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight tracking-tight">
-                {event.title}
-              </h1>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center overflow-hidden">
-                   <Users className="text-gray-400" size={24} />
+          {/* Left Content Area */}
+          <div className="space-y-12">
+            {/* Header Content */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                   <span className="bg-pink-100 text-[#f64060] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-[0.2em] shadow-sm">
+                      {event.category}
+                   </span>
+                   {event.isOnline && (
+                     <span className="bg-blue-50 text-blue-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-[0.2em] shadow-sm flex items-center gap-1.5">
+                       <Globe size={10} /> Online
+                     </span>
+                   )}
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-gray-900">Hosted by <span className="hover:underline cursor-pointer">{event.host}</span></span>
-                  </div>
-                  <p className="text-xs text-gray-500 font-medium">{event.host} is a <span className="text-[#f64060]">Super Organizer</span></p>
-                </div>
+                <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight">
+                  {event.title}
+                </h1>
               </div>
 
-              {/* Host Group Info */}
-              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                 <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center text-white font-bold text-xs uppercase shadow-sm">
-                    MEETUP
-                 </div>
-                 <div className="flex-1">
-                    <h4 className="text-sm font-bold text-gray-900 flex items-center gap-1">
-                      {event.host} <ChevronRight size={14} className="text-gray-400" />
-                    </h4>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-gray-700">{event.hostRating || '4.5'}</span>
-                      <div className="flex text-pink-500">
-                        {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="currentColor" />)}
-                      </div>
-                      <span className="text-xs text-gray-400">{event.hostReviews || '50 reviews'}</span>
+              {/* Host Section */}
+              <div className="flex flex-wrap items-center gap-6 p-1">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center overflow-hidden shadow-inner border-2 border-white ring-1 ring-gray-100">
+                     <Users className="text-gray-400" size={24} />
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="text-sm font-bold text-gray-900 flex items-center gap-1.5">
+                      Hosted by <span className="hover:text-[#f64060] cursor-pointer transition-colors">{event.host}</span>
+                      <CheckCircle2 size={14} className="text-blue-500 fill-blue-50" />
+                    </p>
+                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1.5">
+                       <ShieldCheck size={12} className="text-green-500" /> Super Organizer
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 h-10 px-4 bg-gray-50 rounded-xl border border-gray-100 ml-auto md:ml-0">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
                     </div>
-                 </div>
+                    <span className="text-xs font-black text-gray-700">{event.hostRating || '4.9'}</span>
+                    <span className="text-xs text-gray-400 font-bold border-l border-gray-200 pl-3">82 Reviews</span>
+                </div>
               </div>
             </div>
 
-            {/* Details Section */}
-            <div className="space-y-6 pt-6 border-t border-gray-100">
-              <h2 className="text-2xl font-black text-gray-900 tracking-tight">Details</h2>
-              <div className="prose prose-pink max-w-none text-gray-600 leading-relaxed space-y-4">
-                <p className="font-medium">{event.description}</p>
-                <p className="text-sm opacity-90 whitespace-pre-line">{event.longDescription || event.description}</p>
+            {/* Description Section */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                 <div className="w-1 h-8 bg-[#f64060] rounded-full"></div>
+                 <h2 className="text-2xl font-black text-gray-900 tracking-tight">About this Event</h2>
               </div>
+              <div
+                className="prose prose-pink max-w-none text-gray-600 leading-[1.8] text-lg font-medium tracking-normal"
+                dangerouslySetInnerHTML={{ __html: event.description }}
+              ></div>
             </div>
 
             {/* Agenda Section */}
-            {event.agenda && (
-              <div className="space-y-6 pt-6 border-t border-gray-100">
-                <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-3">
-                  <Clock size={24} className="text-[#f64060]" /> Agenda
-                </h2>
-                <div className="space-y-4">
+            {event.agenda && event.agenda.length > 0 && (
+              <div className="space-y-8 pt-6">
+                <div className="flex items-center justify-between">
+                   <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-3">
+                     <Clock size={28} className="text-[#f64060]" /> Event Agenda
+                   </h2>
+                </div>
+                <div className="grid gap-4">
                   {event.agenda.map((item, idx) => (
-                    <div key={idx} className="flex gap-6 group">
-                      <div className="text-sm font-bold text-gray-900 whitespace-nowrap pt-1 w-20">
+                    <div key={idx} className="group flex gap-8 p-6 rounded-[2rem] bg-gray-50/50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300">
+                      <div className="text-sm font-black text-[#f64060] uppercase tracking-widest whitespace-nowrap pt-0.5">
                         {item.time}
                       </div>
-                      <div className="relative pb-6 pl-4 border-l-2 border-gray-100 group-last:border-transparent">
-                        <div className="absolute top-2 -left-[9px] w-4 h-4 rounded-full bg-white border-2 border-gray-200 group-hover:border-[#f64060] transition-colors"></div>
-                        <p className="text-sm text-gray-700 font-medium leading-relaxed">
+                      <div className="space-y-1">
+                        <p className="text-lg font-bold text-gray-800 group-hover:text-black transition-colors">
                           {item.task}
                         </p>
                       </div>
@@ -144,72 +262,118 @@ const EventDetail = () => {
                 </div>
               </div>
             )}
+
+            {/* Map/Location Preview */}
+            {!event.isOnline && (
+              <div className="space-y-6 pt-6">
+                 <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-3">
+                   <MapPin size={28} className="text-[#f64060]" /> Venue Information
+                 </h2>
+                 <div className="space-y-4">
+                    <MapContainer locationName={event.location} />
+                    <div className="p-6 bg-gray-50 rounded-[2rem] border border-gray-100 flex items-start gap-4">
+                       <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#f64060] shadow-sm shrink-0">
+                          <MapPin size={20} />
+                       </div>
+                       <div>
+                          <p className="text-sm font-black text-gray-900 leading-tight">{event.location}</p>
+                          <p className="text-xs text-gray-500 font-bold mt-1 uppercase tracking-widest">{event.fullLocation || "Exact address provided after registration"}</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            )}
           </div>
 
-          {/* Sidebar Column */}
-          <div className="space-y-6 sticky top-28 h-fit">
-            {/* Action Card */}
-            <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl overflow-hidden">
-              <div className="aspect-[4/3] relative">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-4 right-4 flex gap-2">
-                  <button className="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:text-[#f64060] shadow-lg transition-all active:scale-95">
-                    <Share2 size={20} />
-                  </button>
-                  <button className="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:text-[#f64060] shadow-lg transition-all active:scale-95">
-                    <Heart size={20} />
-                  </button>
+          {/* Sticky Sidebar */}
+          <div className="space-y-8">
+            <div className="sticky top-28 space-y-8">
+              {/* Main Booking Card */}
+              <div className="bg-white rounded-[3rem] border border-gray-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden">
+                <div className="aspect-[4/3] relative group overflow-hidden">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    crossOrigin="anonymous"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-6 right-6 flex flex-col gap-3">
+                    <button
+                      onClick={() => setIsLiked(!isLiked)}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isLiked ? 'bg-[#f64060] text-white' : 'bg-white/90 backdrop-blur-md text-gray-700 hover:text-[#f64060]'}`}
+                    >
+                      <Heart size={22} fill={isLiked ? "currentColor" : "none"} />
+                    </button>
+                    <button className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:text-[#f64060] shadow-2xl transition-all active:scale-90">
+                      <Share2 size={22} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="p-10 space-y-10">
+                  {/* Info Grid */}
+                  <div className="grid gap-8">
+                    <div className="flex gap-5 group cursor-default">
+                      <div className="w-14 h-14 bg-pink-50 rounded-[1.25rem] flex items-center justify-center text-[#f64060] group-hover:bg-[#f64060] group-hover:text-white transition-all duration-500 shadow-sm">
+                        <Calendar size={28} />
+                      </div>
+                      <div className="space-y-1">
+                        <h3 className="text-base font-black text-gray-900">{event.fullDate || event.date}</h3>
+                        <p className="text-xs text-gray-500 font-bold uppercase tracking-[0.15em]">{event.time}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-5 group cursor-default">
+                      <div className="w-14 h-14 bg-pink-50 rounded-[1.25rem] flex items-center justify-center text-[#f64060] group-hover:bg-[#f64060] group-hover:text-white transition-all duration-500 shadow-sm">
+                        <MapPin size={28} />
+                      </div>
+                      <div className="flex-1 space-y-1">
+                        <h3 className="text-base font-black text-gray-900 leading-tight">
+                          {event.isOnline ? "Virtual Event" : event.location}
+                        </h3>
+                        <p className="text-xs text-gray-500 font-bold uppercase tracking-[0.15em]">Get Directions</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className="w-full bg-[#f64060] text-white py-6 rounded-[2rem] text-xl font-black hover:bg-[#e63956] transition-all duration-500 hover:scale-[1.02] active:scale-95 shadow-2xl shadow-pink-500/40"
+                    >
+                      {event.isFree ? "Register for Free" : "Buy Tickets"}
+                    </button>
+                    <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+                       <Info size={10} /> Secure Checkout by EventKeepers
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="p-8 space-y-8">
-                {/* Date & Time */}
-                <div className="flex gap-4 group cursor-default">
-                  <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-[#f64060] group-hover:bg-[#f64060] group-hover:text-white transition-all duration-300">
-                    <Calendar size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-black text-gray-900">{event.fullDate || event.date}</h3>
-                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Add to calendar</p>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex gap-4 group cursor-default">
-                  <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-[#f64060] group-hover:bg-[#f64060] group-hover:text-white transition-all duration-300">
-                    <MapPin size={24} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-black text-gray-900">{event.isOnline ? "Online Event" : (event.fullLocation || event.location)}</h3>
-                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">View on Map</p>
-                  </div>
-                </div>
-
-                <button className="w-full bg-[#f64060] text-white py-5 rounded-3xl text-lg font-black hover:bg-[#e63956] transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-xl shadow-pink-500/30">
-                  {event.isFree ? "Register for Free" : "Get Tickets"}
-                </button>
+              {/* Refund Info */}
+              <div className="bg-gray-50/80 backdrop-blur-sm p-8 rounded-[2.5rem] border border-gray-100 flex items-start gap-5 shadow-sm group hover:shadow-md transition-all">
+                 <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#f64060] transition-colors shadow-sm">
+                   <Clock size={24} />
+                 </div>
+                 <div className="space-y-1">
+                    <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest">Refund Policy</h4>
+                    <p className="text-sm text-gray-500 font-medium leading-relaxed">No refunds available for this event. Contact the host for exceptions.</p>
+                 </div>
               </div>
-            </div>
-
-            {/* Refund Policy */}
-            <div className="bg-gray-50 p-6 rounded-3xl border border-gray-100 flex items-center gap-4">
-               <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-gray-400">
-                 <Clock size={20} />
-               </div>
-               <div>
-                  <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest">Refund Policy</h4>
-                  <p className="text-xs text-gray-500 mt-0.5">Contact the organizer to request a refund.</p>
-               </div>
             </div>
           </div>
 
         </div>
       </main>
 
+      <RegistrationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        event={event}
+        axios={axios}
+        backendUrl={backendUrl}
+      />
       <Footer />
     </div>
   );

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => {
   const {
-    id,
+    _id,
     title,
     image,
     date,
@@ -14,7 +14,7 @@ const EventCard = ({ event }) => {
   } = event;
 
   return (
-    <Link to={`/event/${id}`} className="group cursor-pointer block transition-all duration-700 ease-out">
+    <Link to={`/event/${_id}`} className="group cursor-pointer block transition-all duration-700 ease-out">
       {/* Image Container */}
       <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-3 shadow-sm transition-all duration-700 group-hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)]">
         <img

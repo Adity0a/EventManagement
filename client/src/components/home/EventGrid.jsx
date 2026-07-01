@@ -6,11 +6,11 @@ import EventCard from './EventCard';
 /**
  * Responsive grid for displaying events with "See All" navigation
  */
-const EventGrid = ({ title, location, events, seeAllPath, className = "" }) => {
+const EventGrid = ({ title, location, events, seeAllPath, limit = 4, className = "" }) => {
   if (!events || events.length === 0) return null;
 
-  // Show only 4 events on the home page
-  const displayedEvents = events.slice(0, 4);
+  // Control how many events are shown
+  const displayedEvents = events.slice(0, limit);
   const showButton = !!seeAllPath; // Always show if path is provided
 
   return (
@@ -24,7 +24,7 @@ const EventGrid = ({ title, location, events, seeAllPath, className = "" }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
         {displayedEvents.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <EventCard key={event._id} event={event} />
         ))}
       </div>
 

@@ -6,9 +6,14 @@ import {
   SignInButton,
   SignUpButton,
   UserButton,
+  useUser
 } from '@clerk/react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const { user } = useUser();
+  const isAdmin = user?.publicMetadata?.role === 'admin';
+
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-gray-100 z-50 px-4 md:px-8 py-3 flex items-center justify-between shadow-sm">
       {/* Left: Logo */}
@@ -22,7 +27,7 @@ const Navbar = () => {
       </div>
 
       {/* Right: Actions */}
-      <div className="flex items-center gap-4 md:gap-6">
+      <div className="flex items-center gap-2 md:gap-6 ml-auto">
         <div className="hidden md:flex items-center gap-1.5 cursor-pointer text-gray-700 hover:text-gray-900 transition-colors duration-500">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -45,21 +50,23 @@ const Navbar = () => {
           </div>
         </Show>
 
+        {/* Mobile Search Icon */}
+        <div className="lg:hidden text-gray-600 cursor-pointer p-2 hover:bg-gray-50 rounded-full transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+
         <Show when="signed-in">
-          <div className="flex items-center gap-4">
-            <button className="hidden sm:block text-sm font-medium text-[#f64060] hover:underline">
-              Start a new group
-            </button>
+          <div className="flex items-center gap-3 md:gap-4">
+            {isAdmin && (
+              <Link to="/admin" className="hidden sm:flex text-xs md:text-sm font-bold text-[#f64060] hover:bg-pink-50 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-pink-100 transition-all">
+                Dashboard
+              </Link>
+            )}
             <UserButton afterSignOutUrl="/" />
           </div>
         </Show>
-      </div>
-
-      {/* Mobile Search Icon */}
-      <div className="lg:hidden ml-auto mr-4 text-gray-600 cursor-pointer p-2 hover:bg-gray-50 rounded-full transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
       </div>
     </nav>
   );

@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+/* Custom Quill Styling */
+.quill-editor-wrapper .ql-toolbar.ql-snow {
+  border: none;
+  border-bottom: 1px solid #f3f4f6;
+  padding: 12px 16px;
+  background: #f9fafb;
+}
+
+.quill-editor-wrapper .ql-container.ql-snow {
+  border: none;
+  font-family: inherit;
+}
+
+.quill-editor-wrapper .ql-editor {
+  min-height: 400px;
+  padding: 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.quill-editor-wrapper .ql-editor.ql-blank::before {
+  left: 20px;
+  right: 20px;
+  font-style: normal;
+  color: #9ca3af;
+}

@@ -1,24 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, MapPin } from 'lucide-react';
+import { useAppContext } from '../../context/AppContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
-  const [location, setLocation] = useState('Mumbai, IN');
+  const { searchQuery, setSearchQuery, searchLocation, setSearchLocation, events } = useAppContext();
+  const [query, setQuery] = useState(searchQuery);
+  const [location, setLocation] = useState(searchLocation);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionRef = useRef(null);
+  const navigate = useNavigate();
+  const locationPath = useLocation();
 
-  const suggestions = [
-    'Tech Meetup 2026',
-    'Outdoor Yoga Session',
-    'React Developers Workshop',
-    'Mumbai Food Festival',
-    'Startup Networking Event',
-    'Photography Walk',
-  ];
+  useEffect(() => {
+    setQuery(searchQuery);
+  }, [searchQuery]);
 
-  const filteredSuggestions = suggestions.filter((s) =>
-    s.toLowerCase().includes(query.toLowerCase())
-  );
+  useEffect(() => {
+    setLocation(searchLocation);
+  }, [searchLocation]);
+
+  const filteredSuggestions = events
+    ? events
+        .filter(e => e.title.toLowerCase().includes(query.toLowerCase()) && e.isPublished)
+        .slice(0, 6)
+        .map(e => e.title)
+    : [];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -30,9 +37,20 @@ const SearchBar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleSearch = (e, selectedQuery = query) => {
+    e?.preventDefault();
+    setSearchQuery(selectedQuery);
+    setSearchLocation(location);
+    setShowSuggestions(false);
+
+    if (locationPath.pathname !== '/') {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="relative flex-1 max-w-2xl px-4">
-      <div className="flex items-center bg-white border border-gray-200 rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] focus-within:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300">
+      <form onSubmit={handleSearch} className="flex items-center bg-white border border-gray-200 rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] focus-within:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300">
 
         {/* Search Events Section */}
         <div className="flex-1 flex items-center pl-6 py-3">
@@ -64,10 +82,10 @@ const SearchBar = () => {
         </div>
 
         {/* Search Button */}
-        <button className="bg-[#f64060] hover:bg-[#e63956] text-white w-11 h-11 flex items-center justify-center rounded-full mr-1.5 transition-all duration-300 active:scale-95 group">
+        <button type="submit" className="bg-[#f64060] hover:bg-[#e63956] text-white w-11 h-11 flex items-center justify-center rounded-full mr-1.5 transition-all duration-300 active:scale-95 group">
           <Search size={20} className="group-hover:scale-110 transition-transform duration-300" strokeWidth={3} />
         </button>
-      </div>
+      </form>
 
       {/* Suggestions Dropdown */}
       {showSuggestions && query.length > 0 && (
@@ -83,7 +101,7 @@ const SearchBar = () => {
                   className="px-6 py-3.5 hover:bg-gray-50 cursor-pointer flex items-center gap-3 text-[14px] text-gray-600 transition-colors"
                   onClick={() => {
                     setQuery(item);
-                    setShowSuggestions(false);
+                    handleSearch(null, item);
                   }}
                 >
                   <Search size={14} className="text-gray-400" />

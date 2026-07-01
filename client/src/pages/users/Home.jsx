@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFetchData } from '../../hooks/useFetchData';
+import { useAppContext } from '../../context/AppContext';
 
 // Layout & Common Components
 import Navbar from '../../components/layout/Navbar';
@@ -19,7 +20,7 @@ import FAQSection from '../../components/home/FAQSection';
  * Main landing page for the application
  */
 const Home = () => {
-  // Use custom hook for cleaner data fetching logic
+  const { events: backendEvents, searchQuery, searchLocation } = useAppContext();
   const { data, loading, error } = useFetchData('/carddata.json');
 
   if (loading) {
@@ -38,8 +39,30 @@ const Home = () => {
     );
   }
 
-  // Destructure for cleaner access
-  const { events, onlineEvents, services, destinations, gallery, clients, faqs } = data;
+  // Destructure static data
+  const { services, destinations, gallery, clients, faqs } = data;
+
+  // Filter events based on search
+  const filteredEvents = backendEvents.filter(event => {
+    const safeQuery = (searchQuery || "").trim().toLowerCase();
+    const safeLocation = (searchLocation || "").trim().toLowerCase();
+
+    const matchesQuery = !safeQuery ||
+      (event.title || "").toLowerCase().includes(safeQuery) ||
+      (event.host || "").toLowerCase().includes(safeQuery) ||
+      (event.category || "").toLowerCase().includes(safeQuery);
+
+    const matchesLocation = !safeLocation ||
+      (event.location || "").toLowerCase().includes(safeLocation);
+
+    return matchesQuery && matchesLocation && event.isPublished;
+  });
+
+  // Split filtered events into local and online
+  const localEvents = filteredEvents.filter(e => !e.isOnline);
+  const onlineEvents = filteredEvents.filter(e => e.isOnline);
+
+  const isSearching = (searchQuery || "").trim() !== "" || (searchLocation || "").trim() !== "";
 
   return (
     <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-[#f64060]">
@@ -51,29 +74,46 @@ const Home = () => {
       <main className="pb-12 px-4 md:px-8 max-w-7xl mx-auto overflow-x-hidden">
         <hr className="border-gray-100 mb-16 mx-4" />
 
+        {isSearching && (
+          <div className="mb-12">
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight">
+              {filteredEvents.length > 0
+                ? `Found ${filteredEvents.length} events matching your search`
+                : "No events found matching your search"}
+            </h2>
+            <div className="w-24 h-1 bg-[#f64060] mt-4 rounded-full"></div>
+          </div>
+        )}
+
         {/* Dynamic Content Sections */}
-        <EventGrid
-          title="Events near"
-          location="Mumbai, IN"
-          events={events}
-          seeAllPath="/events/local"
-        />
+        {(localEvents.length > 0 || !isSearching) && (
+          <EventGrid
+            title={isSearching ? "Matching Local Events" : "Events near"}
+            location={isSearching ? "" : "Mumbai, IN"}
+            events={localEvents}
+            seeAllPath={isSearching ? "" : "/events/local"}
+            limit={isSearching ? 100 : 4}
+          />
+        )}
 
-        <EventGrid
-          title="Upcoming online events"
-          events={onlineEvents}
-          seeAllPath="/events/online"
-        />
+        {(onlineEvents.length > 0 || !isSearching) && (
+          <EventGrid
+            title={isSearching ? "Matching Online Events" : "Upcoming online events"}
+            events={onlineEvents}
+            seeAllPath={isSearching ? "" : "/events/online"}
+            limit={isSearching ? 100 : 4}
+          />
+        )}
 
-        <ServicesGrid services={services} />
-
-        <DestinationsGrid destinations={destinations} />
-
-        <GallerySection images={gallery} />
-
-        <ClientsSection clients={clients} />
-
-        <FAQSection faqs={faqs} />
+        {!isSearching && (
+          <>
+            <ServicesGrid services={services} />
+            <DestinationsGrid destinations={destinations} />
+            <GallerySection images={gallery} />
+            <ClientsSection clients={clients} />
+            <FAQSection faqs={faqs} />
+          </>
+        )}
       </main>
 
       <Footer />
