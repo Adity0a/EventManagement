@@ -82,7 +82,7 @@ const SearchBar = () => {
         </div>
 
         {/* Search Button */}
-        <button type="submit" className="bg-[#f64060] hover:bg-[#e63956] text-white w-11 h-11 flex items-center justify-center rounded-full mr-1.5 transition-all duration-300 active:scale-95 group">
+        <button type="submit" className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white w-11 h-11 flex items-center justify-center rounded-full mr-1.5 transition-all duration-300 active:scale-95 group">
           <Search size={20} className="group-hover:scale-110 transition-transform duration-300" strokeWidth={3} />
         </button>
       </form>
@@ -119,3 +119,4 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+

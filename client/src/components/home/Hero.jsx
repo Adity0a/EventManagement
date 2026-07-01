@@ -28,7 +28,7 @@ const Hero = () => {
         <div className="max-w-3xl">
           <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-8 drop-shadow-2xl">
             Experience <br />
-            <span className="text-[#f64060]">Everything.</span>
+            <span className="text-[#7c3aed]">Everything.</span>
           </h1>
 
           <p className="text-xl md:text-3xl text-gray-200 leading-tight mb-12 opacity-90 font-medium max-w-2xl">
@@ -36,7 +36,7 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-wrap gap-6">
-            <button className="bg-[#f64060] text-white px-10 py-5 rounded-full text-xl font-black hover:bg-[#e63956] transition-all duration-700 hover:scale-110 active:scale-95 shadow-[0_20px_50px_rgba(246,64,96,0.3)] hover:shadow-pink-500/50">
+            <button className="bg-[#7c3aed] text-white px-10 py-5 rounded-full text-xl font-black hover:bg-[#6d28d9] transition-all duration-700 hover:scale-110 active:scale-95 shadow-[0_20px_50px_rgba(124, 58, 237,0.3)] hover:shadow-[#7c3aed]/50">
               Start Exploring
             </button>
             <button className="bg-white/10 backdrop-blur-xl text-white border-2 border-white/30 px-10 py-5 rounded-full text-xl font-bold hover:bg-white/20 transition-all duration-700">
@@ -57,3 +57,6 @@ const Hero = () => {
 
 
 export default Hero;
+
+
+

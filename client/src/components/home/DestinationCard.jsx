@@ -20,10 +20,12 @@ const DestinationCard = ({ city, image }) => {
         </h3>
       </div>
 
-      {/* Orange Bottom Accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#f64060] transform scale-x-0 transition-transform duration-700 origin-left group-hover:scale-x-100"></div>
+      {/* Purple Bottom Accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#7c3aed] transform scale-x-0 transition-transform duration-700 origin-left group-hover:scale-x-100"></div>
     </div>
   );
 };
 
 export default DestinationCard;
+
+

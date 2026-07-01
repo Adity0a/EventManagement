@@ -10,7 +10,7 @@ const Sidebar = () => {
         to="/admin"
         className={({ isActive }) =>
           `flex items-center gap-3 py-4 px-6 md:min-w-64 cursor-pointer transition-all ${
-            isActive ? "bg-pink-50 text-[#f64060] border-r-4 border-[#f64060]" : "text-gray-500 hover:bg-gray-50"
+            isActive ? "bg-purple-50 text-[#7c3aed] border-r-4 border-[#7c3aed]" : "text-gray-500 hover:bg-gray-50"
           }`
         }
       >
@@ -22,7 +22,7 @@ const Sidebar = () => {
         to="/admin/add-event"
         className={({ isActive }) =>
           `flex items-center gap-3 py-4 px-6 md:min-w-64 cursor-pointer transition-all ${
-            isActive ? "bg-pink-50 text-[#f64060] border-r-4 border-[#f64060]" : "text-gray-500 hover:bg-gray-50"
+            isActive ? "bg-purple-50 text-[#7c3aed] border-r-4 border-[#7c3aed]" : "text-gray-500 hover:bg-gray-50"
           }`
         }
       >
@@ -34,7 +34,7 @@ const Sidebar = () => {
         to="/admin/list-events"
         className={({ isActive }) =>
           `flex items-center gap-3 py-4 px-6 md:min-w-64 cursor-pointer transition-all ${
-            isActive ? "bg-pink-50 text-[#f64060] border-r-4 border-[#f64060]" : "text-gray-500 hover:bg-gray-50"
+            isActive ? "bg-purple-50 text-[#7c3aed] border-r-4 border-[#7c3aed]" : "text-gray-500 hover:bg-gray-50"
           }`
         }
       >
@@ -46,3 +46,4 @@ const Sidebar = () => {
 }
 
 export default Sidebar;
+

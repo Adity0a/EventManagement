@@ -14,9 +14,10 @@ const SectionHeader = ({ title, subtitle, centered = false }) => {
           {subtitle}
         </p>
       )}
-      <div className={`w-16 h-1 bg-[#f64060] ${centered ? 'mx-auto' : ''}`}></div>
+      <div className={`w-16 h-1 bg-[#7c3aed] ${centered ? 'mx-auto' : ''}`}></div>
     </div>
   );
 };
 
 export default SectionHeader;
+

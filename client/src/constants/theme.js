@@ -3,9 +3,9 @@
  * Centralized source of truth for colors and branding
  */
 export const COLORS = {
-  primary: '#f64060', // Evently Pink/Red
-  primaryHover: '#e63956',
-  secondary: '#7c3aed', // Theme Purple
+  primary: '#7c3aed', // Theme Purple
+  primaryHover: '#6d28d9',
+  secondary: '#7c3aed', // Old Pink/Red
   text: {
     main: '#1e293b',    // Slate 800
     muted: '#64748b',   // Slate 500
@@ -23,3 +23,4 @@ export const TRANSITIONS = {
   fast: 'duration-300 ease-in-out',
   cinematic: 'duration-1000 ease-out'
 };
+

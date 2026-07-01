@@ -60,7 +60,7 @@ const Navbar = () => {
         <Show when="signed-in">
           <div className="flex items-center gap-3 md:gap-4">
             {isAdmin && (
-              <Link to="/admin" className="hidden sm:flex text-xs md:text-sm font-bold text-[#f64060] hover:bg-pink-50 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-pink-100 transition-all">
+              <Link to="/admin" className="hidden sm:flex text-xs md:text-sm font-bold text-[#7c3aed] hover:bg-purple-50 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-purple-100 transition-all">
                 Dashboard
               </Link>
             )}
@@ -73,3 +73,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

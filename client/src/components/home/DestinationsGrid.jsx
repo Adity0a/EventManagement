@@ -11,7 +11,7 @@ const DestinationsGrid = ({ destinations }) => {
     <section className="mb-24 px-4">
       <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight text-center md:text-left">
-          Top destinations in <span className="text-[#f64060]">United States</span>
+          Top destinations in <span className="text-[#7c3aed]">United States</span>
         </h2>
         <div className="flex gap-3">
           <button className="p-2 rounded-full border border-gray-200 text-gray-400 hover:text-gray-900 hover:border-gray-900 transition-all duration-500">
@@ -41,3 +41,4 @@ const DestinationsGrid = ({ destinations }) => {
 };
 
 export default DestinationsGrid;
+

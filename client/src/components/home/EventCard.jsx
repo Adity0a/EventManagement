@@ -34,7 +34,7 @@ const EventCard = ({ event }) => {
 
       {/* Content */}
       <div className="space-y-1 transition-transform duration-700 group-hover:translate-x-1">
-        <h3 className="text-lg font-bold text-gray-900 line-clamp-2 leading-tight transition-colors duration-700 group-hover:text-[#f64060]">
+        <h3 className="text-lg font-bold text-gray-900 line-clamp-2 leading-tight transition-colors duration-700 group-hover:text-[#7c3aed]">
           {title}
         </h3>
         <div className="flex items-center flex-wrap gap-2 text-sm font-medium text-gray-500">
@@ -58,3 +58,4 @@ const EventCard = ({ event }) => {
 
 
 export default EventCard;
+

@@ -83,7 +83,7 @@ const RegistrationModal = ({ isOpen, onClose, event, axios, backendUrl }) => {
                     onChange={handleInputChange}
                     required
                     placeholder="John Doe"
-                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f64060]/20 focus:bg-white transition-all"
+                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/20 focus:bg-white transition-all"
                   />
                 </div>
               </div>
@@ -99,7 +99,7 @@ const RegistrationModal = ({ isOpen, onClose, event, axios, backendUrl }) => {
                     onChange={handleInputChange}
                     required
                     placeholder="john@example.com"
-                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f64060]/20 focus:bg-white transition-all"
+                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/20 focus:bg-white transition-all"
                   />
                 </div>
               </div>
@@ -117,7 +117,7 @@ const RegistrationModal = ({ isOpen, onClose, event, axios, backendUrl }) => {
                     onChange={handleInputChange}
                     required
                     placeholder="+1 234 567 890"
-                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f64060]/20 focus:bg-white transition-all"
+                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/20 focus:bg-white transition-all"
                   />
                 </div>
               </div>
@@ -132,7 +132,7 @@ const RegistrationModal = ({ isOpen, onClose, event, axios, backendUrl }) => {
                     value={formData.occupation}
                     onChange={handleInputChange}
                     placeholder="e.g. Developer"
-                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f64060]/20 focus:bg-white transition-all"
+                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/20 focus:bg-white transition-all"
                   />
                 </div>
               </div>
@@ -148,7 +148,7 @@ const RegistrationModal = ({ isOpen, onClose, event, axios, backendUrl }) => {
                   onChange={handleInputChange}
                   rows="3"
                   placeholder="Anything else we should know?"
-                  className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f64060]/20 focus:bg-white transition-all resize-none"
+                  className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/20 focus:bg-white transition-all resize-none"
                 ></textarea>
               </div>
             </div>
@@ -156,7 +156,7 @@ const RegistrationModal = ({ isOpen, onClose, event, axios, backendUrl }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#f64060] text-white py-4 rounded-3xl text-lg font-black hover:bg-[#e63956] transition-all duration-300 hover:scale-[1.01] active:scale-95 shadow-xl shadow-pink-500/20 disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-3 mt-4"
+              className="w-full bg-[#7c3aed] text-white py-4 rounded-3xl text-lg font-black hover:bg-[#6d28d9] transition-all duration-300 hover:scale-[1.01] active:scale-95 shadow-xl shadow-[#7c3aed]/20 disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-3 mt-4"
             >
               {isSubmitting ? (
                 <>
@@ -175,3 +175,5 @@ const RegistrationModal = ({ isOpen, onClose, event, axios, backendUrl }) => {
 };
 
 export default RegistrationModal;
+
+

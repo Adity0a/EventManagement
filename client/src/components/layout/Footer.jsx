@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../common/Logo';
 import {
   ChevronRight,
   Phone,
@@ -76,15 +77,7 @@ const Footer = () => {
 
         {/* Brand Section */}
         <div className="space-y-6">
-          <div className="flex items-center gap-2">
-            <div className="text-[#f64060]">
-              {/* Simple Flower/Spark Logo placeholder similar to image */}
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.5 9H22L16 13.5L18.5 20.5L12 16L5.5 20.5L8 13.5L2 9H9.5L12 2Z" />
-              </svg>
-            </div>
-            <span className="text-white text-2xl font-bold tracking-tight">Evently</span>
-          </div>
+          <Logo light />
           <p className="text-sm leading-relaxed max-w-xs">
             Discover seamless event planning with India's Largest Event Booking Portal.
             Explore a vast array of venues and services, ensuring a perfect match for your occasions.
@@ -97,14 +90,14 @@ const Footer = () => {
         <div>
           <h3 className="text-white font-bold text-sm tracking-widest uppercase mb-4 relative inline-block">
             Useful Links
-            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#f64060]"></div>
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#7c3aed]"></div>
           </h3>
           <div className="mt-8 border-t border-gray-800/50">
             <ul className="space-y-0 text-sm">
               {usefulLinks1.map((link, idx) => (
                 <li key={idx} className="border-b border-gray-800/50 py-3 group">
                   <a href={link.href} className="flex items-center gap-2 hover:text-white transition-colors duration-300">
-                    <ChevronRight size={14} className="text-[#f64060] group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight size={14} className="text-[#7c3aed] group-hover:translate-x-1 transition-transform" />
                     {link.name}
                   </a>
                 </li>
@@ -117,14 +110,14 @@ const Footer = () => {
         <div>
           <h3 className="text-white font-bold text-sm tracking-widest uppercase mb-4 relative inline-block">
             Useful Links
-            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#f64060]"></div>
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#7c3aed]"></div>
           </h3>
           <div className="mt-8 border-t border-gray-800/50">
             <ul className="space-y-0 text-sm">
               {usefulLinks2.map((link, idx) => (
                 <li key={idx} className="border-b border-gray-800/50 py-3 group">
                   <a href={link.href} className="flex items-center gap-2 hover:text-white transition-colors duration-300">
-                    <ChevronRight size={14} className="text-[#f64060] group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight size={14} className="text-[#7c3aed] group-hover:translate-x-1 transition-transform" />
                     {link.name}
                   </a>
                 </li>
@@ -137,21 +130,21 @@ const Footer = () => {
         <div>
           <h3 className="text-white font-bold text-sm tracking-widest uppercase mb-4 relative inline-block">
             Contact Us
-            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#f64060]"></div>
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#7c3aed]"></div>
           </h3>
           <div className="mt-8 pt-4 space-y-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold">Phone:</span>
-                <a href="tel:+919773696123" className="text-[#f64060] hover:underline">+91 7736961239</a>
+                <a href="tel:+919773696123" className="text-[#7c3aed] hover:underline">+91 7736961239</a>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold">Phone:</span>
-                <a href="tel:+918451901950" className="text-[#f64060] hover:underline">+91 1234123412</a>
+                <a href="tel:+918451901950" className="text-[#7c3aed] hover:underline">+91 1234123412</a>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold">Email:</span>
-                <a href="mailto:info@eventkeepers.com" className="text-[#f64060] hover:underline">info@evently.com</a>
+                <a href="mailto:info@evently.com" className="text-[#7c3aed] hover:underline">info@evently.com</a>
               </div>
             </div>
 
@@ -161,7 +154,7 @@ const Footer = () => {
                 <a
                   key={idx}
                   href={social.href}
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-[#f64060] hover:text-white transition-all duration-300"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-[#7c3aed] hover:text-white transition-all duration-300"
                 >
                   {social.icon}
                 </a>
@@ -176,3 +169,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

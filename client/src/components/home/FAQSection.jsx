@@ -11,12 +11,12 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
         onClick={onClick}
         className="w-full py-6 flex items-center text-left gap-4 group transition-colors duration-500"
       >
-        <span className={`transition-transform duration-500 flex-shrink-0 ${isOpen ? 'rotate-180 text-[#f64060]' : 'text-gray-400'}`}>
+        <span className={`transition-transform duration-500 flex-shrink-0 ${isOpen ? 'rotate-180 text-[#7c3aed]' : 'text-gray-400'}`}>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </span>
-        <span className={`text-lg font-medium transition-colors duration-500 ${isOpen ? 'text-[#f64060]' : 'text-gray-700 group-hover:text-gray-900'}`}>
+        <span className={`text-lg font-medium transition-colors duration-500 ${isOpen ? 'text-[#7c3aed]' : 'text-gray-700 group-hover:text-gray-900'}`}>
           {question}
         </span>
       </button>
@@ -62,3 +62,4 @@ const FAQSection = ({ faqs }) => {
 };
 
 export default FAQSection;
+

@@ -51,8 +51,8 @@ const MapContainer = ({ locationName }) => {
     return (
       <div className="w-full h-[400px] bg-gray-50 flex flex-col items-center justify-center rounded-[3rem] border border-gray-100 shadow-inner">
         <div className="relative">
-           <div className="absolute inset-0 bg-[#f64060]/20 rounded-full animate-ping"></div>
-           <Loader2 className="relative animate-spin text-[#f64060]" size={32} />
+           <div className="absolute inset-0 bg-[#7c3aed]/20 rounded-full animate-ping"></div>
+           <Loader2 className="relative animate-spin text-[#7c3aed]" size={32} />
         </div>
         <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mt-6">Searching Venue...</p>
       </div>
@@ -71,7 +71,7 @@ const MapContainer = ({ locationName }) => {
         </p>
         <button
           onClick={() => window.location.reload()}
-          className="mt-6 text-[10px] font-black uppercase tracking-widest text-[#f64060] hover:underline"
+          className="mt-6 text-[10px] font-black uppercase tracking-widest text-[#7c3aed] hover:underline"
         >
           Try Reloading
         </button>
@@ -86,7 +86,7 @@ const MapContainer = ({ locationName }) => {
   return (
     <div className="relative group w-full h-[400px] rounded-[3rem] overflow-hidden border-4 border-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] group">
       {/* Background Glow */}
-      <div className="absolute -inset-4 bg-[#f64060]/5 blur-3xl rounded-full group-hover:bg-[#f64060]/10 transition-colors duration-700"></div>
+      <div className="absolute -inset-4 bg-[#7c3aed]/5 blur-3xl rounded-full group-hover:bg-[#7c3aed]/10 transition-colors duration-700"></div>
 
       <img
         src={staticMapUrl}
@@ -113,7 +113,7 @@ const MapContainer = ({ locationName }) => {
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationName)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#f64060] text-white p-5 rounded-3xl shadow-2xl hover:bg-black transition-all duration-500 active:scale-90 pointer-events-auto flex items-center gap-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-700 delay-75"
+          className="bg-[#7c3aed] text-white p-5 rounded-3xl shadow-2xl hover:bg-black transition-all duration-500 active:scale-90 pointer-events-auto flex items-center gap-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-700 delay-75"
         >
           <Navigation size={20} className="fill-current" />
           <span className="text-xs font-black uppercase tracking-widest hidden sm:inline">Get Directions</span>
@@ -128,3 +128,4 @@ const MapContainer = ({ locationName }) => {
 };
 
 export default React.memo(MapContainer);
+

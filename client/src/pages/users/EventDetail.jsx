@@ -59,7 +59,7 @@ const EventDetail = () => {
       const doc = new jsPDF();
 
       doc.setFontSize(22);
-      doc.setTextColor(246, 64, 96);
+      doc.setTextColor(124, 58, 237);
       doc.text(event.title, 20, 30, { maxWidth: 170 });
 
       doc.setFontSize(12);
@@ -96,7 +96,7 @@ const EventDetail = () => {
 
       doc.addPage();
       doc.setFontSize(18);
-      doc.setTextColor(246, 64, 96);
+      doc.setTextColor(124, 58, 237);
       doc.text("Event Description", 20, 25);
 
       doc.setFontSize(11);
@@ -111,7 +111,7 @@ const EventDetail = () => {
       if (event.agenda && event.agenda.length > 0) {
         doc.addPage();
         doc.setFontSize(18);
-        doc.setTextColor(246, 64, 96);
+        doc.setTextColor(124, 58, 237);
         doc.text("Event Agenda", 20, 25);
 
         let yPos = 40;
@@ -140,28 +140,28 @@ const EventDetail = () => {
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#f64060]"></div>
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#7c3aed]"></div>
     </div>
   );
 
   if (!event) return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white gap-4">
       <h1 className="text-2xl font-bold text-gray-800">Event not found</h1>
-      <button onClick={() => navigate('/')} className="text-[#f64060] font-semibold flex items-center gap-2">
+      <button onClick={() => navigate('/')} className="text-[#7c3aed] font-semibold flex items-center gap-2">
         <ArrowLeft size={20} /> Back to Home
       </button>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-pink-100 selection:text-[#f64060]">
+    <div className="min-h-screen bg-white font-sans selection:bg-purple-100 selection:text-[#7c3aed]">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-12 mt-16">
         {/* Navigation Bar */}
         <div className="mb-10 flex items-center justify-between border-b border-gray-100 pb-6">
-          <Link to="/" className="group text-gray-500 hover:text-[#f64060] transition-all flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
-            <div className="p-2 rounded-full bg-gray-50 group-hover:bg-pink-50 transition-colors">
+          <Link to="/" className="group text-gray-500 hover:text-[#7c3aed] transition-all flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
+            <div className="p-2 rounded-full bg-gray-50 group-hover:bg-purple-50 transition-colors">
               <ArrowLeft size={16} />
             </div>
             Back to Events
@@ -170,7 +170,7 @@ const EventDetail = () => {
           <button
             onClick={exportToPDF}
             disabled={isExporting}
-            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-600 hover:text-[#f64060] transition-all border border-gray-200 px-5 py-2.5 rounded-2xl hover:bg-white hover:shadow-lg disabled:opacity-50"
+            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-600 hover:text-[#7c3aed] transition-all border border-gray-200 px-5 py-2.5 rounded-2xl hover:bg-white hover:shadow-lg disabled:opacity-50"
           >
             <Download size={14} />
             {isExporting ? "Processing..." : "Export PDF"}
@@ -185,7 +185,7 @@ const EventDetail = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                   <span className="bg-pink-100 text-[#f64060] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-[0.2em] shadow-sm">
+                   <span className="bg-purple-100 text-[#7c3aed] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-[0.2em] shadow-sm">
                       {event.category}
                    </span>
                    {event.isOnline && (
@@ -207,7 +207,7 @@ const EventDetail = () => {
                   </div>
                   <div className="space-y-0.5">
                     <p className="text-sm font-bold text-gray-900 flex items-center gap-1.5">
-                      Hosted by <span className="hover:text-[#f64060] cursor-pointer transition-colors">{event.host}</span>
+                      Hosted by <span className="hover:text-[#7c3aed] cursor-pointer transition-colors">{event.host}</span>
                       <CheckCircle2 size={14} className="text-blue-500 fill-blue-50" />
                     </p>
                     <p className="text-xs text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1.5">
@@ -229,7 +229,7 @@ const EventDetail = () => {
             {/* Description Section */}
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-                 <div className="w-1 h-8 bg-[#f64060] rounded-full"></div>
+                 <div className="w-1 h-8 bg-[#7c3aed] rounded-full"></div>
                  <h2 className="text-2xl font-black text-gray-900 tracking-tight">About this Event</h2>
               </div>
               <div
@@ -243,13 +243,13 @@ const EventDetail = () => {
               <div className="space-y-8 pt-6">
                 <div className="flex items-center justify-between">
                    <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-3">
-                     <Clock size={28} className="text-[#f64060]" /> Event Agenda
+                     <Clock size={28} className="text-[#7c3aed]" /> Event Agenda
                    </h2>
                 </div>
                 <div className="grid gap-4">
                   {event.agenda.map((item, idx) => (
                     <div key={idx} className="group flex gap-8 p-6 rounded-[2rem] bg-gray-50/50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300">
-                      <div className="text-sm font-black text-[#f64060] uppercase tracking-widest whitespace-nowrap pt-0.5">
+                      <div className="text-sm font-black text-[#7c3aed] uppercase tracking-widest whitespace-nowrap pt-0.5">
                         {item.time}
                       </div>
                       <div className="space-y-1">
@@ -267,12 +267,12 @@ const EventDetail = () => {
             {!event.isOnline && (
               <div className="space-y-6 pt-6">
                  <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-3">
-                   <MapPin size={28} className="text-[#f64060]" /> Venue Information
+                   <MapPin size={28} className="text-[#7c3aed]" /> Venue Information
                  </h2>
                  <div className="space-y-4">
                     <MapContainer locationName={event.location} />
                     <div className="p-6 bg-gray-50 rounded-[2rem] border border-gray-100 flex items-start gap-4">
-                       <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#f64060] shadow-sm shrink-0">
+                       <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#7c3aed] shadow-sm shrink-0">
                           <MapPin size={20} />
                        </div>
                        <div>
@@ -301,11 +301,11 @@ const EventDetail = () => {
                   <div className="absolute top-6 right-6 flex flex-col gap-3">
                     <button
                       onClick={() => setIsLiked(!isLiked)}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isLiked ? 'bg-[#f64060] text-white' : 'bg-white/90 backdrop-blur-md text-gray-700 hover:text-[#f64060]'}`}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 ${isLiked ? 'bg-[#7c3aed] text-white' : 'bg-white/90 backdrop-blur-md text-gray-700 hover:text-[#7c3aed]'}`}
                     >
                       <Heart size={22} fill={isLiked ? "currentColor" : "none"} />
                     </button>
-                    <button className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:text-[#f64060] shadow-2xl transition-all active:scale-90">
+                    <button className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:text-[#7c3aed] shadow-2xl transition-all active:scale-90">
                       <Share2 size={22} />
                     </button>
                   </div>
@@ -315,7 +315,7 @@ const EventDetail = () => {
                   {/* Info Grid */}
                   <div className="grid gap-8">
                     <div className="flex gap-5 group cursor-default">
-                      <div className="w-14 h-14 bg-pink-50 rounded-[1.25rem] flex items-center justify-center text-[#f64060] group-hover:bg-[#f64060] group-hover:text-white transition-all duration-500 shadow-sm">
+                      <div className="w-14 h-14 bg-purple-50 rounded-[1.25rem] flex items-center justify-center text-[#7c3aed] group-hover:bg-[#7c3aed] group-hover:text-white transition-all duration-500 shadow-sm">
                         <Calendar size={28} />
                       </div>
                       <div className="space-y-1">
@@ -325,7 +325,7 @@ const EventDetail = () => {
                     </div>
 
                     <div className="flex gap-5 group cursor-default">
-                      <div className="w-14 h-14 bg-pink-50 rounded-[1.25rem] flex items-center justify-center text-[#f64060] group-hover:bg-[#f64060] group-hover:text-white transition-all duration-500 shadow-sm">
+                      <div className="w-14 h-14 bg-purple-50 rounded-[1.25rem] flex items-center justify-center text-[#7c3aed] group-hover:bg-[#7c3aed] group-hover:text-white transition-all duration-500 shadow-sm">
                         <MapPin size={28} />
                       </div>
                       <div className="flex-1 space-y-1">
@@ -340,12 +340,12 @@ const EventDetail = () => {
                   <div className="space-y-4">
                     <button
                       onClick={() => setIsModalOpen(true)}
-                      className="w-full bg-[#f64060] text-white py-6 rounded-[2rem] text-xl font-black hover:bg-[#e63956] transition-all duration-500 hover:scale-[1.02] active:scale-95 shadow-2xl shadow-pink-500/40"
+                      className="w-full bg-[#7c3aed] text-white py-6 rounded-[2rem] text-xl font-black hover:bg-[#6d28d9] transition-all duration-500 hover:scale-[1.02] active:scale-95 shadow-2xl shadow-[#7c3aed]/40"
                     >
                       {event.isFree ? "Register for Free" : "Buy Tickets"}
                     </button>
                     <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2">
-                       <Info size={10} /> Secure Checkout by EventKeepers
+                       <ShieldCheck size={10} className="text-green-500" /> Secure Checkout by Evently
                     </p>
                   </div>
                 </div>
@@ -353,7 +353,7 @@ const EventDetail = () => {
 
               {/* Refund Info */}
               <div className="bg-gray-50/80 backdrop-blur-sm p-8 rounded-[2.5rem] border border-gray-100 flex items-start gap-5 shadow-sm group hover:shadow-md transition-all">
-                 <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#f64060] transition-colors shadow-sm">
+                 <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#7c3aed] transition-colors shadow-sm">
                    <Clock size={24} />
                  </div>
                  <div className="space-y-1">
@@ -380,3 +380,6 @@ const EventDetail = () => {
 };
 
 export default EventDetail;
+
+
+

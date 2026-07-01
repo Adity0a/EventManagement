@@ -48,15 +48,15 @@ const Dashboard = () => {
 
   if (loading) return (
     <div className="p-10 flex items-center justify-center min-h-[400px]">
-       <Loader2 className="animate-spin text-[#f64060]" size={32} />
+       <Loader2 className="animate-spin text-[#7c3aed]" size={32} />
     </div>
   );
 
   const stats = [
     { label: 'Total Events', value: data?.totalEvents || 0, icon: <Calendar className="text-blue-500" />, change: '+12%' },
     { label: 'Total Registrations', value: data?.totalRegistrations || 0, icon: <Users className="text-green-500" />, change: '+5%' },
-    { label: 'Page Views', value: '45k', icon: <Eye className="text-purple-500" />, change: '+18%' },
-    { label: 'Conversion', value: '3.2%', icon: <TrendingUp className="text-orange-500" />, change: '+2%' },
+    { label: 'Page Views', value: '45k', icon: <Eye className="text-[#7c3aed]" />, change: '+18%' },
+    { label: 'Conversion', value: '3.2%', icon: <TrendingUp className="text-[#7c3aed]" />, change: '+2%' },
   ];
 
   return (
@@ -114,7 +114,7 @@ const Dashboard = () => {
                    <img src={event.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-black text-gray-900 line-clamp-1 group-hover:text-[#f64060] transition-colors">{event.title}</p>
+                  <p className="text-sm font-black text-gray-900 line-clamp-1 group-hover:text-[#7c3aed] transition-colors">{event.title}</p>
                   <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-0.5">{event.category}</p>
                 </div>
                 <div className="text-right">
@@ -133,3 +133,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+

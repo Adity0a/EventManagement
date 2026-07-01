@@ -137,7 +137,7 @@ const EditEvent = () => {
 
   if (loading) return (
     <div className="flex-1 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#f64060]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#7c3aed]"></div>
     </div>
   );
 
@@ -156,7 +156,7 @@ const EditEvent = () => {
             <div>
               <p className="text-sm font-semibold mb-2">Event Image</p>
               <label htmlFor="image" className="cursor-pointer block">
-                <div className="border-2 border-dashed border-gray-200 rounded-xl h-48 flex items-center justify-center overflow-hidden hover:border-[#f64060] transition-colors">
+                <div className="border-2 border-dashed border-gray-200 rounded-xl h-48 flex items-center justify-center overflow-hidden hover:border-[#7c3aed] transition-colors">
                   {image ? (
                     <img src={URL.createObjectURL(image)} className="w-full h-full object-cover" />
                   ) : existingImage ? (
@@ -178,7 +178,7 @@ const EditEvent = () => {
                 <input
                   type="text" name="title" value={formData.title} onChange={handleInputChange} required
                   placeholder="e.g. React Conference 2026"
-                  className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#f64060]/20 outline-none"
+                  className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7c3aed]/20 outline-none"
                 />
               </div>
 
@@ -236,17 +236,17 @@ const EditEvent = () => {
 
             <div className="space-y-4 pt-4">
               <label className="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox" name="isFree" checked={formData.isFree} onChange={handleInputChange} className="w-5 h-5 accent-[#f64060]" />
+                <input type="checkbox" name="isFree" checked={formData.isFree} onChange={handleInputChange} className="w-5 h-5 accent-[#7c3aed]" />
                 <span className="text-sm font-medium text-gray-700 group-hover:text-black">Is this a free event?</span>
               </label>
 
               <label className="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox" name="isOnline" checked={formData.isOnline} onChange={handleInputChange} className="w-5 h-5 accent-[#f64060]" />
+                <input type="checkbox" name="isOnline" checked={formData.isOnline} onChange={handleInputChange} className="w-5 h-5 accent-[#7c3aed]" />
                 <span className="text-sm font-medium text-gray-700 group-hover:text-black">Is this an online event?</span>
               </label>
 
               <label className="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox" name="isPublished" checked={formData.isPublished} onChange={handleInputChange} className="w-5 h-5 accent-[#f64060]" />
+                <input type="checkbox" name="isPublished" checked={formData.isPublished} onChange={handleInputChange} className="w-5 h-5 accent-[#7c3aed]" />
                 <span className="text-sm font-medium text-gray-700 group-hover:text-black">Publish immediately?</span>
               </label>
             </div>
@@ -260,19 +260,19 @@ const EditEvent = () => {
               type="button"
               onClick={generateAIContent}
               disabled={isGenerating}
-              className="text-xs bg-[#f64060]/10 text-[#f64060] px-4 py-2 rounded-xl font-bold hover:bg-[#f64060]/20 transition-all disabled:opacity-50 flex items-center gap-2"
+              className="text-xs bg-[#7c3aed]/10 text-[#7c3aed] px-4 py-2 rounded-xl font-bold hover:bg-[#7c3aed]/20 transition-all disabled:opacity-50 flex items-center gap-2"
             >
               {isGenerating ? "Generating..." : "✨ Generate with AI"}
             </button>
           </div>
-          <div className="quill-editor-wrapper bg-white rounded-2xl overflow-hidden border border-gray-200 focus-within:ring-2 focus-within:ring-[#f64060]/20 transition-all">
+          <div className="quill-editor-wrapper bg-white rounded-2xl overflow-hidden border border-gray-200 focus-within:ring-2 focus-within:ring-[#7c3aed]/20 transition-all">
             <div ref={editorRef} className="min-h-[400px]"></div>
           </div>
         </div>
 
         <button
           disabled={isSaving} type="submit"
-          className="mt-12 w-full md:w-64 bg-[#f64060] text-white py-4 rounded-xl font-bold hover:bg-[#e63956] transition-all disabled:opacity-50"
+          className="mt-12 w-full md:w-64 bg-[#7c3aed] text-white py-4 rounded-xl font-bold hover:bg-[#6d28d9] transition-all disabled:opacity-50"
         >
           {isSaving ? "Saving Changes..." : "Update Event"}
         </button>
@@ -282,3 +282,4 @@ const EditEvent = () => {
 };
 
 export default EditEvent;
+

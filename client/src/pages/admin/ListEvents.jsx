@@ -67,7 +67,7 @@ const ListEvents = () => {
                   <td className="py-4 text-sm text-gray-600">
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-1.5">
-                        <Calendar size={12} className="text-[#f64060]" />
+                        <Calendar size={12} className="text-[#7c3aed]" />
                         <span>{event.date}</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-xs text-gray-400">
@@ -92,7 +92,7 @@ const ListEvents = () => {
                       <Link
                         to={`/event/${event._id}`}
                         target="_blank"
-                        className="p-2 hover:bg-white hover:text-[#f64060] rounded-lg transition-all border border-transparent hover:border-gray-200"
+                        className="p-2 hover:bg-white hover:text-[#7c3aed] rounded-lg transition-all border border-transparent hover:border-gray-200"
                       >
                         <ExternalLink size={16} />
                       </Link>
@@ -124,3 +124,4 @@ const ListEvents = () => {
 };
 
 export default ListEvents;
+

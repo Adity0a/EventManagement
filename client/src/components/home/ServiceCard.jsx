@@ -11,7 +11,7 @@ const ServiceCard = ({ title, description, image }) => {
       />
 
       {/* Dark Overlay at Bottom */}
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-slate-900/80 backdrop-blur-[2px] flex flex-col items-center justify-center p-4 text-center transition-all duration-700 group-hover:h-1/2 group-hover:bg-[#f64060]/90">
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-slate-900/80 backdrop-blur-[2px] flex flex-col items-center justify-center p-4 text-center transition-all duration-700 group-hover:h-1/2 group-hover:bg-[#7c3aed]/90">
         <h3 className="text-white text-xl font-bold mb-1 tracking-wide uppercase transition-transform duration-700 group-hover:-translate-y-1">
           {title}
         </h3>
@@ -27,3 +27,4 @@ const ServiceCard = ({ title, description, image }) => {
 };
 
 export default ServiceCard;
+

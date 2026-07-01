@@ -183,7 +183,7 @@
     },
     {
       "id": 4,
-      "title": "EventKepers Flagship",
+      "title": "Evently Flagship",
       "description": "Venues under complete management.",
       "image": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800"
     },
@@ -201,14 +201,41 @@
     }
   ],
   "gallery": [
-    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1472653431158-6364773b2a56?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1514525253361-b83f859b73c0?auto=format&fit=crop&q=80&w=800"
+    {
+      "url": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
+      "title": "Global Tech Summit 2024",
+      "category": "Corporate"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800",
+      "title": "Main Stage Live Concert",
+      "category": "Concert"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800",
+      "title": "Elegant Reception Dinner",
+      "category": "Wedding"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&q=80&w=800",
+      "title": "Product Launch Showcase",
+      "category": "Workshop"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&q=80&w=1200",
+      "title": "Corporate Gala Event",
+      "category": "Corporate"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=800",
+      "title": "Executive Leadership Retreat",
+      "category": "Corporate"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=1200",
+      "title": "Outdoor Ceremony Setup",
+      "category": "Wedding"
+    }
   ],
   "clients": [
     { "name": "ideaForge", "logo": "https://www.vectorlogo.zone/logos/google/google-ar21.svg" },

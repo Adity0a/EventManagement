@@ -52,7 +52,7 @@ const BlogTableItem = ({ blog, fetchBlogs, index }) => {
       <td className="px-2 py-4 max-sm:hidden">{BlogDate.toDateString()}</td>
       <td className="px-2 py-4 max-sm:hidden">
         <p
-          className={`${blog.isPublished ? "text-green-600" : "text-orange-700"}`}
+          className={`${blog.isPublished ? "text-green-600" : "text-[#6d28d9]"}`}
         >
           {blog.isPublished ? "Published" : "Unpublished"}
         </p>
@@ -73,3 +73,5 @@ const BlogTableItem = ({ blog, fetchBlogs, index }) => {
 };
 
 export default BlogTableItem;
+
+

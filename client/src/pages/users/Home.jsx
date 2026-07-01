@@ -26,7 +26,7 @@ const Home = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#f64060]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#7c3aed]"></div>
       </div>
     );
   }
@@ -65,7 +65,7 @@ const Home = () => {
   const isSearching = (searchQuery || "").trim() !== "" || (searchLocation || "").trim() !== "";
 
   return (
-    <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-[#f64060]">
+    <div className="min-h-screen bg-white selection:bg-purple-100 selection:text-[#7c3aed]">
       <Navbar />
 
       {/* Hero Section - Outside main container to expand left/right */}
@@ -81,7 +81,7 @@ const Home = () => {
                 ? `Found ${filteredEvents.length} events matching your search`
                 : "No events found matching your search"}
             </h2>
-            <div className="w-24 h-1 bg-[#f64060] mt-4 rounded-full"></div>
+            <div className="w-24 h-1 bg-[#7c3aed] mt-4 rounded-full"></div>
           </div>
         )}
 
@@ -122,3 +122,4 @@ const Home = () => {
 };
 
 export default Home;
+

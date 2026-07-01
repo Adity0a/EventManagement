@@ -17,7 +17,7 @@ const ClientItem = ({ client }) => {
           onError={() => setHasError(true)}
         />
       ) : (
-        <span className="text-2xl font-black text-gray-400 transition-all duration-700 group-hover:text-[#f64060] group-hover:scale-105 tracking-tighter uppercase italic">
+        <span className="text-2xl font-black text-gray-400 transition-all duration-700 group-hover:text-[#7c3aed] group-hover:scale-105 tracking-tighter uppercase italic">
           {client.name}
         </span>
       )}
@@ -45,3 +45,4 @@ const ClientsSection = ({ clients }) => {
 };
 
 export default ClientsSection;
+
