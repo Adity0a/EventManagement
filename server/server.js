@@ -10,10 +10,7 @@ const app = express();
 await connectDB();
 
 // Middlewares
-app.use(cors({
-    origin: ['https://event-management-kappa-sand.vercel.app', 'http://localhost:5173'],
-    credentials: true
-}))
+app.use(cors())
 app.use(express.json())
 
 //Routes
