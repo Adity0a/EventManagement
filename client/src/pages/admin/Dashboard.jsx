@@ -118,7 +118,7 @@ const Dashboard = () => {
                   <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-0.5">{event.category}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-black text-gray-900">450</p>
+                  <p className="text-sm font-black text-gray-900">50</p>
                   <p className="text-[10px] text-gray-400 uppercase font-black tracking-tighter">Views</p>
                 </div>
               </div>

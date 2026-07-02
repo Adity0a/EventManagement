@@ -10,7 +10,10 @@ const app = express();
 await connectDB();
 
 // Middlewares
-app.use(cors())
+app.use(cors({
+    origin: ['https://event-management-kappa-sand.vercel.app', 'http://localhost:5173'],
+    credentials: true
+}))
 app.use(express.json())
 
 //Routes
@@ -19,6 +22,7 @@ app.use('/api/admin', adminRouter)
 app.use('/api/event', eventRouter)
 
 const PORT = process.env.PORT || 4000;
+
 
 app.listen(PORT,  ()=>{
     console.log("Server is running on port " + PORT);
